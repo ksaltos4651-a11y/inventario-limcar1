@@ -1,0 +1,48 @@
+DROP TABLE IF EXISTS movimientos;
+DROP TABLE IF EXISTS productos;
+DROP TABLE IF EXISTS categorias;
+DROP TABLE IF EXISTS usuarios;
+
+
+CREATE TABLE usuarios (
+  id SERIAL PRIMARY KEY,
+  cedula VARCHAR(20) UNIQUE NOT NULL,
+  nombre VARCHAR(120) NOT NULL,
+  email VARCHAR(180) UNIQUE,
+  password_hash TEXT NOT NULL,
+  rol VARCHAR(30) NOT NULL DEFAULT 'usuario',
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+
+
+CREATE TABLE categorias (
+  id SERIAL PRIMARY KEY,
+  nombre VARCHAR(120) UNIQUE NOT NULL
+);
+
+
+CREATE TABLE productos (
+  id SERIAL PRIMARY KEY,
+  nombre VARCHAR(200) NOT NULL,
+  sku VARCHAR(60) UNIQUE,
+  categoria_id INT REFERENCES categorias(id) ON DELETE SET NULL,
+  stock_minimo INT NOT NULL DEFAULT 0,
+  precio NUMERIC(12,2) NOT NULL DEFAULT 0,
+  stock INT NOT NULL DEFAULT 0,
+  activo BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+
+CREATE TABLE movimientos (
+  id SERIAL PRIMARY KEY,
+  producto_id INT NOT NULL REFERENCES productos(id) ON DELETE CASCADE,
+  tipo VARCHAR(20) NOT NULL,
+  cantidad INT NOT NULL CHECK (cantidad > 0),
+  motivo TEXT,
+  usuario_id INT NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+  fecha TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+
+INSERT INTO categorias (nombre) VALUES ('General')
+ON CONFLICT DO NOTHING;

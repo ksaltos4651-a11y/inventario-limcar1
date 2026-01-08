@@ -1,0 +1,49 @@
+services:
+  db:
+    platform: linux/amd64
+    image: postgres:16
+    container_name: limcar_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: Inventario_LimCar1
+    ports:
+      - "5432:5432"
+    volumes:
+      - limcar_db_data:/var/lib/postgresql/data
+    networks:
+      - limcar_net
+
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: limcar_backend
+    env_file:
+      - .env.backend
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    networks:
+      - limcar_net
+
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    container_name: limcar_frontend
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    networks:
+      - limcar_net
+
+networks:
+  limcar_net:
+
+volumes:
+  limcar_db_data:
+
+  

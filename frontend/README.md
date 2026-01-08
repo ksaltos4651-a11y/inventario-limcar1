@@ -1,16 +1,129 @@
-# React + Vite
+#  Inventario_LimCar1
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web **Full Stack** para la gestión de inventarios de una empresa o negocio.  
+Permite administrar productos, controlar stock, registrar movimientos (entradas y salidas) y manejar autenticación de usuarios.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+##  Tecnologías utilizadas
 
-## React Compiler
+### Backend
+- Node.js
+- Express.js
+- PostgreSQL
+- JWT (Autenticación)
+- bcryptjs (Encriptación de contraseñas)
+- dotenv
+- cors
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Frontend
+- React (Vite)
+- React Router DOM
+- Axios
+- CSS moderno (UI responsiva)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+##  Estructura del proyecto
+
+Inventario_LimCar1/
+├── backend/
+│ ├── src/
+│ │ ├── middlewares/
+│ │ ├── db.js
+│ │ └── server.js
+│ ├── .env
+│ └── package.json
+│
+├── frontend/
+│ ├── src/
+│ │ ├── pages/
+│ │ ├── services/
+│ │ └── App.jsx
+│ └── package.json
+│
+└── README.md
+
+
+---
+
+##  Funcionalidades principales
+
+- ✅ Registro y login de usuarios
+- ✅ Autenticación con JWT
+- ✅ CRUD de productos
+- ✅ Control de stock mínimo
+- ✅ Registro automático de movimientos al crear productos
+- ✅ Historial de entradas y salidas
+- ✅ Interfaz moderna y responsiva
+- ✅ Protección de rutas
+
+---
+
+##  Base de datos
+
+- **Motor:** PostgreSQL
+- Tablas principales:
+  - usuarios
+  - productos
+  - categorias
+  - movimientos
+
+El stock se controla mediante movimientos (ENTRADA / SALIDA).
+
+---
+
+
+```bash
+git clone https://github.com/tu-usuario/Inventario_LimCar1.git
+
+Configurar el Backend
+cd backend
+npm install
+
+Crear archivo .env:
+
+PORT=3000
+DATABASE_URL=postgresql://postgres:TU_PASSWORD@localhost:5432/Inventario_LimCar1
+JWT_SECRET=limcar1_secreto
+
+Ejecutar:
+
+npm run dev
+
+
+Backend disponible en:
+
+http://localhost:3000
+
+Configurar el Frontend
+cd frontend
+npm install
+npm run dev
+
+
+Frontend disponible en:
+
+http://localhost:5173
+
+ Usuario de prueba
+Cédula: 1313874651
+Contraseña: 1995
+
+Autor
+
+Kelvin Ariel Saltos Mendoza_Quiroz Chavez Geobanny Andres
+Proyecto académico – Desarrollo Web Full Stack
+Año 2026
+
+Proyecto educativo – uso académico
+
+
+---
+
+1. Abre tu repositorio en GitHub
+2. Edita el `README.md`
+3. Arrastra la imagen dentro del editor
+4. GitHub genera automáticamente:
+   ```md
+   ![Login](ruta-imagen.png)
